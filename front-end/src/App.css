@@ -2,6 +2,20 @@
     width: 12rem;
 }
 
+.dark-blue {
+    color: #232e71;
+    font-weight: 500;
+}
+
+.sem-cards-container {
+    overflowy: "scroll";
+}
+
+.card-bg {
+    background: #eef2ff;
+    border-radius: 1rem;
+}
+
 .dark-blue-text,
 .dark-blue-text-active {
     background: white;
@@ -78,8 +92,8 @@
     background: url("./graphics/Data-rafiki-2.png");
 }
 
-
-.data-rafiki-3,.teacher-data-rafiki {
+.data-rafiki-3,
+.teacher-data-rafiki {
     background: url("./graphics/Data-rafiki-3.png");
 }
 
