@@ -3,7 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 
 export default function SemCard({ data, semno }) {
     return (
-        <div className='card-bg p-3 m-3'>
+        <div className='card-bg sem-card  p-3 m-3'>
             <Link
                 to='/activitylist'
                 onClick={() => {
@@ -11,7 +11,7 @@ export default function SemCard({ data, semno }) {
                     localStorage.setItem("sem", semno);
                 }}
             >
-                <div className='col-xl-3 col-md-4 col-sm-6 '> {semno}</div>
+                <div className='h3 orange'>{semno}</div>
                 <div>Activties Added</div>
                 <div>Points Gained</div>
             </Link>

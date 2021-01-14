@@ -7,6 +7,10 @@
     font-weight: 500;
 }
 
+.orange {
+    color: #fba368;
+}
+
 .sem-cards-container {
     overflowy: "scroll";
 }
@@ -14,6 +18,11 @@
 .card-bg {
     background: #eef2ff;
     border-radius: 1rem;
+}
+
+.sem-card {
+    width: 15rem;
+    height: 182px;
 }
 
 .dark-blue-text,
