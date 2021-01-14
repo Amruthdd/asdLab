@@ -35,7 +35,7 @@ function Home(props) {
             </div>
             <div className='my-5'>
                 <div className='dark-blue h5'>Semesters</div>
-                <div className='d-flex my-3 sem-cards-container'>
+                <div className='d-flex my-3 sem-cards-container flex-wrap'>
                     {sem.map((semno) => {
                         return <SemCard data={data} semno={semno} />;
                     })}
