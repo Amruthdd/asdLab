@@ -4,6 +4,9 @@ import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 import SemCard from "./SemCardOnHome";
 import TitleSVG from "../TitleSVG";
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+
 
 function Home(props) {
     const data = localStorage.getItem("user");
@@ -14,6 +17,7 @@ function Home(props) {
     }
 
     const sem = ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8"];
+    const percentage = 50;
 
     return (
         <div className='my-5 container user-select-none overflow-hidden'>
@@ -140,10 +144,17 @@ function Home(props) {
                         S8
                     </Link>
                 </div> */}
+                
+           
             <div className='my-5'>
+                
                 <div className='dark-blue h5'>Progress</div>
                 <div className='row my-3'>
-                    <div className='card-bg p-3 m-3'>Chart</div>
+                    <div className='card-bg p-3 m-3 '>Chart
+                    <div className=' progress-circle'>
+                    <CircularProgressbar value={percentage} text={`${percentage}%`}  styles={buildStyles({pathColor: '#5078FA'})} />
+                    </div>
+                    </div>
                     <div className='card-bg p-3 m-3'>Semester 1: 35</div>
                 </div>
             </div>
