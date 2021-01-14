@@ -10,8 +10,11 @@ export default function ActivityCard({ data }) {
         <div className='card-bg activity-card p-3 my-3'>
             <div className='d-flex align-items-center'>
                 <div className='mr-auto'>
-                    <div className='round d-flex justify-content-center align-items-center m-2'>
-                        <MdAssignment size={22} />
+                    <div className='d-flex'>
+                        <div className='round d-flex justify-content-center align-items-center m-2'>
+                            <MdAssignment size={22} />
+                        </div>
+                        <div>Arduino Workshop</div>
                     </div>
                 </div>
                 {approval ? (
