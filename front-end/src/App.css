@@ -1,0 +1,123 @@
+.log-page-title {
+    width: 12rem;
+}
+
+.dark-blue-text,
+.dark-blue-text-active {
+    background: white;
+    color: #232e71;
+    font-weight: 500;
+    padding: 0.75rem 7.5%;
+    margin: 0 2vw;
+    border-radius: 15px 15px 0 0;
+}
+
+.dark-blue-text-active {
+    background: #eef2ff;
+}
+
+.dark-blue-text a,
+.dark-blue-text a:hover {
+    color: #232e71;
+    text-decoration: none;
+}
+
+.log-box-main {
+    background: #eef2ff;
+    border-radius: 20px;
+    width: 80%;
+}
+
+.form-control {
+    background: #dde1ed;
+    color: black;
+    border: 0;
+    border-radius: 10px;
+    width: 100%;
+    transition: all 0.15s ease-in-out;
+}
+
+.form-control:focus {
+    background: #cfd4e5;
+    box-shadow: none;
+    transition: all 0.15s ease-in-out;
+}
+
+.start-btn {
+    background: #5078fa;
+    color: white;
+    font-weight: 500;
+    border-radius: 20px;
+    min-width: max-content;
+}
+
+.start-btn:hover {
+    background: #232e71;
+    color: white;
+}
+
+.start-btn:focus {
+    box-shadow: none;
+}
+
+.onboarding-desc {
+    font-weight: normal;
+    color: #b3b3bb;
+}
+
+.onboarding-desc a {
+    color: #232e71;
+}
+
+.data-rafiki-1,
+.login-data-rafiki {
+    background: url("./graphics/Data-rafiki-1.png");
+}
+
+.data-rafiki-2 {
+    background: url("./graphics/Data-rafiki-2.png");
+}
+
+
+.data-rafiki-3,.teacher-data-rafiki {
+    background: url("./graphics/Data-rafiki-3.png");
+}
+
+.data-rafiki,
+.data-rafiki-1,
+.data-rafiki-2,
+.data-rafiki-3,
+.login-data-rafiki,
+.teacher-data-rafiki {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    margin: 0;
+    height: 300px;
+}
+
+.log-bg {
+    background: url("./graphics/log-bg.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: bottom;
+}
+
+.login-data-rafiki,
+.teacher-data-rafiki {
+    height: 70vw;
+}
+
+@media (min-width: 768px) {
+    .log-bg {
+        background: url("./graphics/log-bg-md.png");
+        background-repeat: repeat-x;
+        background-size: 100% 100%;
+        background-position: bottom;
+    }
+
+    .login-data-rafiki,
+    .teacher-data-rafiki {
+        height: 400px;
+    }
+}
