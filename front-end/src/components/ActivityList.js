@@ -1,6 +1,8 @@
 import react from "react";
 import { Link, Redirect } from "react-router-dom";
 import TitleSVG from "../TitleSVG";
+import { FaPlus } from "react-icons/fa";
+import ActivityCard from "./ActivityCardOnSem";
 
 export default function ActivityList() {
     const data = localStorage.getItem("user");
@@ -28,44 +30,27 @@ export default function ActivityList() {
                         </Link>
                     </div>
                 </div>
-                <div>
-                    <h2 className='dark-blue'>S1</h2>
-                    <Link to='/activity'>Add New</Link>
-                </div>
-                <div>
-                    <div class='modal' tabindex='-1' role='dialog'>
-                        <div class='modal-dialog' role='document'>
-                            <div class='modal-content'>
-                                <div class='modal-header'>
-                                    <h5 class='modal-title'>Modal title</h5>
-                                    <button
-                                        type='button'
-                                        class='close'
-                                        data-dismiss='modal'
-                                        aria-label='Close'
-                                    >
-                                        <span aria-hidden='true'>&times;</span>
-                                    </button>
+                <div className='my-5'>
+                    <div className='d-flex align-items-center '>
+                        <h2 className='dark-blue mr-5 mb-0'>S1</h2>
+                        <Link
+                            to='/activity'
+                            className='btn start-btn orange-btn'
+                        >
+                            <div className='d-flex align-item-center'>
+                                <div className='ml-2 mr-1'>
+                                    <FaPlus />
                                 </div>
-                                <div class='modal-body'>
-                                    <p>Modal body text goes here.</p>
-                                </div>
-                                <div class='modal-footer'>
-                                    <button
-                                        type='button'
-                                        class='btn btn-primary'
-                                    >
-                                        Save changes
-                                    </button>
-                                    <button
-                                        type='button'
-                                        class='btn btn-secondary'
-                                        data-dismiss='modal'
-                                    >
-                                        Close
-                                    </button>
+                                <div className='ml-1 mr-2'>
+                                    <span class='align-baseline'>Add New</span>
                                 </div>
                             </div>
+                        </Link>
+                    </div>
+                    <div className='my-5'>
+                        <h4 classname='purple'>Activities</h4>
+                        <div>
+                            <ActivityCard />
                         </div>
                     </div>
                 </div>

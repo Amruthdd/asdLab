@@ -11,13 +11,21 @@
     color: #fba368;
 }
 
+.purple {
+    color: #5078fa;
+}
+
+.orange-btn {
+    background: #fba368 !important;
+}
+
 .sem-cards-container {
     overflowy: "scroll";
 }
 
 .card-bg {
     background: #eef2ff;
-    border-radius: 1rem;
+    border-radius: 0.9rem;
 }
 
 .sem-card {
@@ -25,7 +33,44 @@
     height: 182px;
 }
 
-.dark-blue-text,
+.activity-card {
+    max-width: 70%;
+    height: 5rem;
+}
+
+.round {
+    background: #5078fa;
+    border-radius: 100%;
+    color: white;
+    height: 35px;
+    width: 35px;
+}
+
+.dropdown-menu {
+    background: #eef2ff;
+}
+
+.more-vert {
+    color: rgba(80, 120, 250, 0.5);
+}
+
+.dropdown-btn:focus {
+    box-shadow: none;
+}
+
+.green-btn {
+    background: rgba(57, 217, 138, 0.5);
+    color: #1d6b45;
+    font-weight: 500;
+}
+
+.orange-btn {
+    background: rgba(245, 167, 94, 0.3);
+    color: #b85720;
+    font-weight: 500;
+}
+
+.btn .dark-blue-text,
 .dark-blue-text-active {
     background: white;
     color: #232e71;
