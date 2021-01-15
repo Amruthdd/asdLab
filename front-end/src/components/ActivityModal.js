@@ -3,27 +3,23 @@ import { Link, Redirect } from "react-router-dom";
 import Axios from "axios";
 import Select from "react-select";
 
-
 const catego = [
-    { value: 'Sports and games', label: 'Sports and games' },
-    { value: 'Cultural', label: 'Cultural' },
-  ];
-
+    { value: "Sports and games", label: "Sports and games" },
+    { value: "Cultural", label: "Cultural" },
+];
 
 const levelof = [
-    { value: 'College', label: 'College' },
-    { value: 'State', label: 'State' },
-    { value: 'International', label: 'International' },
-  ];
-  
-const priz = [
-    { value: 'First', label: 'First' },
-    { value: 'Second', label: 'Second' },
-    { value: 'Third', label: 'Third' },
-    { value: 'Participation', label: 'Participation' },
-  ];
-  
+    { value: "College", label: "College" },
+    { value: "State", label: "State" },
+    { value: "International", label: "International" },
+];
 
+const priz = [
+    { value: "First", label: "First" },
+    { value: "Second", label: "Second" },
+    { value: "Third", label: "Third" },
+    { value: "Participation", label: "Participation" },
+];
 
 function Activity(props) {
     const [activity, setActivity] = useState("");
@@ -33,8 +29,6 @@ function Activity(props) {
     const [access, setAccess] = useState();
     const [message, setMessage] = useState("");
     const [details, setDetails] = useState([]);
-    
-
 
     // const u = props.location.state.username;
     const user = localStorage.getItem("user");
@@ -54,38 +48,34 @@ function Activity(props) {
     }, []);
 
     const uploadDetails = (e) => {
-
         const token = localStorage.getItem("token");
         console.log(level.value);
-        var certificatedata=new FormData();
-        
-        const  image=document.querySelector('input[type="file"]').files[0];
+        var certificatedata = new FormData();
 
-        certificatedata.append('username',user);
-        certificatedata.append('sem',semR);
-        certificatedata.append('title',activity);
-        certificatedata.append('category',category.value);
-        certificatedata.append('level',level.value);
-        certificatedata.append('prize',prize.value);
-        certificatedata.append('certificatedata',image);
+        const image = document.querySelector('input[type="file"]').files[0];
 
-        fetch(`http://localhost:8001/certi/activity`,{
-            method:"POST",
-            headers:{
+        certificatedata.append("username", user);
+        certificatedata.append("sem", semR);
+        certificatedata.append("title", activity);
+        certificatedata.append("category", category.value);
+        certificatedata.append("level", level.value);
+        certificatedata.append("prize", prize.value);
+        certificatedata.append("certificatedata", image);
+
+        fetch(`http://localhost:8001/certi/activity`, {
+            method: "POST",
+            headers: {
                 "x-access-token": localStorage.getItem("token"),
             },
-            body:certificatedata
-            }).then(r => {
-                if(r.status==200){
+            body: certificatedata,
+        })
+            .then((r) => {
+                if (r.status == 200) {
                     alert("Certificate updated successfully");
-                }
-                else if(r.status==422)
-                    alert("Invalid File format");
-                else if(r.status==401)
-                    alert("Authentication error");
-                    
+                } else if (r.status == 422) alert("Invalid File format");
+                else if (r.status == 401) alert("Authentication error");
             })
-            .catch(err => console.log(err));
+            .catch((err) => console.log(err));
 
         // Axios.post(
         //     `http://localhost:8001/activity`,
@@ -146,10 +136,10 @@ function Activity(props) {
                     <label for='category' className='dark-blue purple'>
                         Category
                     </label>
-                    <Select 
+                    <Select
                         defaultValue={category}
                         onChange={setCategory}
-                        options={catego} 
+                        options={catego}
                     />
                     {/* <input
                         className='form-control white-input px-3 mb-4'
@@ -166,10 +156,10 @@ function Activity(props) {
                     <label for='prize' className='dark-blue purple'>
                         Prize Won
                     </label>
-                    <Select 
+                    <Select
                         defaultValue={prize}
                         onChange={setPrize}
-                        options={priz} 
+                        options={priz}
                     />
                     {/* <input
                         className='form-control white-input px-3 mb-4'
@@ -186,10 +176,10 @@ function Activity(props) {
                     <label for='level' className='dark-blue purple'>
                         Achievement Level
                     </label>
-                    <Select 
+                    <Select
                         defaultValue={level}
                         onChange={setLevel}
-                        options={levelof} 
+                        options={levelof}
                     />
                     {/* <input
                         className='form-control white-input px-3 mb-4'
@@ -202,10 +192,10 @@ function Activity(props) {
                         required
                     ></input> */}
                 </div>
-                <div class='form-group'>
+                <div class='form-group pt-2'>
                     <input
                         type='file'
-                        class='form-control-file'
+                        className='form-control-file'
                         id='exampleFormControlFile1'
                     ></input>
                 </div>
