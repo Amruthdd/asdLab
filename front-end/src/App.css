@@ -46,7 +46,14 @@
 
 .white-input {
     background-color: #fff !important;
-    border: 1px solid #eef2ff !important;
+    border: 1px solid hsl(0, 0%, 70%) !important;
+    border-radius: 4px !important;
+}
+
+.white-input:focus {
+    border: 1px solid #2684ff !important;
+    box-shadow: 0 0 0 1px #2684ff !important;
+    border-radius: 4px !important;
 }
 
 .orange-btn {
@@ -184,7 +191,7 @@
 }
 
 .form-control-file {
-    color: #5078fa;
+    color: #999;
 }
 
 .start-btn {
