@@ -85,7 +85,7 @@ function Profile(props) {
             </div>
             <div className='profile-center'>
                 <Link to='/home' className='btn start-btn px-3'>
-                    Back to home
+                    Back to Home
                 </Link>
             </div>
         </div>

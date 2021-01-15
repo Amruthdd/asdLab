@@ -12,16 +12,21 @@ class Logout extends React.Component {
 
     render() {
         return (
-            <div className='container logged-out d-flex justify-content-center'>
-                <div className='d-flex flex-column align-items-center'>
-                    <div className='log-page-title'>
-                        <TitleSVG />
+            <div className='container user-select-none'>
+                <div className='my-5 logged-out d-flex justify-content-center user-select-none'>
+                    <div className='d-flex flex-column align-items-center'>
+                        <div className='log-page-title'>
+                            <TitleSVG />
+                        </div>
+                        <h5 className='mt-3 mb-4 grey'>
+                            You've been logged out!
+                        </h5>
+                        <Link to='/login' className='btn start-btn'>
+                            Go to Login Page
+                        </Link>
                     </div>
-                    <h2>You've been logged out!</h2>
-                    <Link to='/login' className='btn start-btn'>
-                        {"<< "}Go to Login Page
-                    </Link>
                 </div>
+                <div className='logout-bg'></div>
             </div>
         );
     }

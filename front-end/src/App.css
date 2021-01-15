@@ -292,3 +292,13 @@
         height: 400px;
     }
 }
+
+.logout-bg {
+    background: url("./graphics/Mobile login-cuate.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    margin: 0;
+    height: 25rem;
+    opacity: 50%;
+}
