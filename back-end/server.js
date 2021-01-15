@@ -37,8 +37,35 @@ require("dotenv").config();
 
 // }
 
+var Storagecerti = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'certificates');
+    },
+    filename: function (req, file, cb) {
+      cb(null, new Date().toISOString().replace(/:/g,'-')+'-'+file.originalname);
+    }
+  });
+  const fileFiltercerti=(req,file,cb)=>{
+    console.log("yess");
+    console.log(file);
+    if(file.mimetype == 'application/pdf' || 
+        file.mimetype == 'image/jpg' || 
+        file.mimetype =='image/png' || 
+        file.mimetype =='image/jpeg'){
+        cb(null,true);
+    }
+    else{
+        cb(null,false);
+    }
+
+}
+
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use('/certi',multer({storage:Storagecerti,fileFilter:fileFiltercerti}).single('certificatedata'));
+app.use('/certificates',express.static(path.join(__dirname,'certificates')));
+
 // app.use('/images',express.static(path.join(__dirname,'images')));
 app.use(
     Cors({
@@ -92,6 +119,16 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
     next();
 });
+
+
+// admin.create({
+//     username:"cs203"
+// }).then((r) => {
+//     console.log(r);
+// })
+// .catch((err) => {
+//     console.log(err);
+// });
 
 app.post("/signup", (req, res, next) => {
     const password = req.body.password;
@@ -210,6 +247,7 @@ app.post("/activity", verifyJWT, (req, res, next) => {
             username: req.body.username,
             sem: req.body.sem,
             activity: req.body.activity,
+            category:req.body.category,
             prize: req.body.prize,
             level: req.body.level,
         })
@@ -223,6 +261,44 @@ app.post("/activity", verifyJWT, (req, res, next) => {
             next(err);
         });
 });
+
+app.post("/certi/activity",verifyJWT,(req,res,next)=>{
+
+    console.log(req.file);
+    console.log(req.body.title);
+
+    if(!req.file){
+      res.sendStatus(422);
+    }
+    // else if (req.userid===req.params.studentid){
+    //   certificate.create({username:req.userid,title:req.body.title,category:req.body.category,filepath:req.file.path});
+    //   res.sendStatus(200);
+    // }
+
+//    else
+//    res.sendStatus(401);
+    
+        activity
+        .create({
+            username: req.body.username,
+            sem: req.body.sem,
+            title: req.body.title,
+            category:req.body.category,
+            prize: req.body.prize,
+            level: req.body.level,
+            image:req.file.path
+        })
+        .then((r) => {
+            res.status(200).json({ message: "Activity added" });
+        })
+        .catch((err) => {
+            err.statusCode = 403;
+            err.message = "Something went wrong!!";
+            res.send(err.message);
+            next(err);
+        });
+    
+  });
 
 app.get("/:username/:sem/activity", verifyJWT, (req, res, next) => {
     activity

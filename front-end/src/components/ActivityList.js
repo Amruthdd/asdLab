@@ -1,15 +1,38 @@
-import react from "react";
+import react, { useState, useEffect } from "react";
 import { Link, Redirect } from "react-router-dom";
 import TitleSVG from "../TitleSVG";
 import { FaPlus } from "react-icons/fa";
 import ActivityCard from "./ActivityCardOnSem";
 import ActivityModal from "./ActivityModal";
+import Axios from "axios";
 
 export default function ActivityList() {
-    const data = localStorage.getItem("user");
+    
+    const [activity, setActivity] = useState("");
+    const [prize, setPrize] = useState("");
+    const [level, setLevel] = useState("");
+    const [access, setAccess] = useState();
+    const [message, setMessage] = useState("");
+    const [details, setDetails] = useState([]);
+
+    // const u = props.location.state.username;
+    const user = localStorage.getItem("user");
+    // const sem = props.location.state.sem;
+    const semR = localStorage.getItem("sem");
     const token = localStorage.getItem("token");
 
-    if (!token || !data) {
+    useEffect(() => {
+        Axios.get(`http://localhost:8001/${user}/${semR}/activity`, {
+            headers: {
+                "x-access-token": localStorage.getItem("token"),
+            },
+        }).then((response) => {
+            setDetails(response.data);
+            // console.log(response.data);
+        });
+    }, []);
+
+    if (!token || !user) {
         return <Redirect to='/login' />;
     }
     return (
@@ -33,7 +56,7 @@ export default function ActivityList() {
                 </div>
                 <div className='my-5'>
                     <div className='d-flex align-items-center '>
-                        <h2 className='dark-blue mr-5 mb-0'>S1</h2>
+                        <h2 className='dark-blue mr-5 mb-0'>{semR}</h2>
                         {/* <Link
                             to='/activity'
                             className='btn start-btn orange-btn'
@@ -115,7 +138,7 @@ export default function ActivityList() {
                     </div>
                     <div className='my-5'>
                         <h4 className='purple'>Activities</h4>
-                        <ActivityCard />
+                        <ActivityCard data={details} />
                     </div>
                 </div>
             </div>

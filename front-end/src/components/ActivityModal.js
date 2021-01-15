@@ -1,14 +1,40 @@
 import React, { useState, useEffect } from "react";
 import { Link, Redirect } from "react-router-dom";
 import Axios from "axios";
+import Select from "react-select";
+
+
+const catego = [
+    { value: 'Sports and games', label: 'Sports and games' },
+    { value: 'Cultural', label: 'Cultural' },
+  ];
+
+
+const levelof = [
+    { value: 'College', label: 'College' },
+    { value: 'State', label: 'State' },
+    { value: 'International', label: 'International' },
+  ];
+  
+const priz = [
+    { value: 'First', label: 'First' },
+    { value: 'Second', label: 'Second' },
+    { value: 'Third', label: 'Third' },
+    { value: 'Participation', label: 'Participation' },
+  ];
+  
+
 
 function Activity(props) {
     const [activity, setActivity] = useState("");
     const [prize, setPrize] = useState("");
     const [level, setLevel] = useState("");
+    const [category, setCategory] = useState("");
     const [access, setAccess] = useState();
     const [message, setMessage] = useState("");
     const [details, setDetails] = useState([]);
+    
+
 
     // const u = props.location.state.username;
     const user = localStorage.getItem("user");
@@ -28,38 +54,70 @@ function Activity(props) {
     }, []);
 
     const uploadDetails = (e) => {
+
         const token = localStorage.getItem("token");
+        console.log(level.value);
+        var certificatedata=new FormData();
+        
+        const  image=document.querySelector('input[type="file"]').files[0];
 
-        Axios.post(
-            `http://localhost:8001/activity`,
-            {
-                username: user,
-                sem: semR,
-                activity: activity,
-                prize: prize,
-                level: level,
+        certificatedata.append('username',user);
+        certificatedata.append('sem',semR);
+        certificatedata.append('title',activity);
+        certificatedata.append('category',category.value);
+        certificatedata.append('level',level.value);
+        certificatedata.append('prize',prize.value);
+        certificatedata.append('certificatedata',image);
+
+        fetch(`http://localhost:8001/certi/activity`,{
+            method:"POST",
+            headers:{
+                "x-access-token": localStorage.getItem("token"),
             },
-            {
-                headers: {
-                    // 'Content-Type' :"application/json",
-                    "x-access-token": token,
-                },
-            }
-        ).then((response) => {
-            console.log(response);
+            body:certificatedata
+            }).then(r => {
+                if(r.status==200){
+                    alert("Certificate updated successfully");
+                }
+                else if(r.status==422)
+                    alert("Invalid File format");
+                else if(r.status==401)
+                    alert("Authentication error");
+                    
+            })
+            .catch(err => console.log(err));
 
-            // if (response.data.auth) {
+        // Axios.post(
+        //     `http://localhost:8001/activity`,
+        //     {
+        //         username: user,
+        //         sem: semR,
+        //         activity: activity,
+        //         category: category.value,
+        //         prize: prize.value,
+        //         level: level.value,
+        //     },
+        //     {
+        //         headers: {
+        //             // 'Content-Type' :"application/json",
+        //             "x-access-token": token,
+        //         },
+        //     }
+        // ).then((response) => {
+        //     console.log(response);
 
-            //     localStorage.setItem("token", response.data.token);
-            //     setAccess(true);
+        //     // if (response.data.auth) {
 
-            // } else {
+        //     //     localStorage.setItem("token", response.data.token);
+        //     //     setAccess(true);
 
-            //     setAccess(false);
-            //     setMessage(response.data);
+        //     // } else {
 
-            // }
-        });
+        //     //     setAccess(false);
+        //     //     setMessage(response.data);
+
+        //     // }
+        // });
     };
     if (!token) {
         return <Redirect to='/login' />;
@@ -85,10 +143,15 @@ function Activity(props) {
                     ></input>
                 </div>
                 <div class='form-group'>
-                    <label for='prize' className='dark-blue purple'>
-                        Prize Won
+                    <label for='category' className='dark-blue purple'>
+                        Category
                     </label>
-                    <input
+                    <Select 
+                        defaultValue={category}
+                        onChange={setCategory}
+                        options={catego} 
+                    />
+                    {/* <input
                         className='form-control white-input px-3 mb-4'
                         type='text'
                         placeholder='Prize'
@@ -97,13 +160,38 @@ function Activity(props) {
                             setPrize(e.target.value);
                         }}
                         required
-                    ></input>
+                    ></input> */}
+                </div>
+                <div class='form-group'>
+                    <label for='prize' className='dark-blue purple'>
+                        Prize Won
+                    </label>
+                    <Select 
+                        defaultValue={prize}
+                        onChange={setPrize}
+                        options={priz} 
+                    />
+                    {/* <input
+                        className='form-control white-input px-3 mb-4'
+                        type='text'
+                        placeholder='Prize'
+                        name='prize'
+                        onChange={(e) => {
+                            setPrize(e.target.value);
+                        }}
+                        required
+                    ></input> */}
                 </div>
                 <div class='form-group'>
                     <label for='level' className='dark-blue purple'>
                         Achievement Level
                     </label>
-                    <input
+                    <Select 
+                        defaultValue={level}
+                        onChange={setLevel}
+                        options={levelof} 
+                    />
+                    {/* <input
                         className='form-control white-input px-3 mb-4'
                         type='text'
                         placeholder='Level'
@@ -112,7 +200,7 @@ function Activity(props) {
                             setLevel(e.target.value);
                         }}
                         required
-                    ></input>
+                    ></input> */}
                 </div>
                 <div class='form-group'>
                     <input
@@ -151,16 +239,16 @@ function Activity(props) {
                     {message}
                 </p>
             </form>
-            <div style={{ textAlign: "center" }}>
+            {/* <div style={{ textAlign: "center" }}>
                 {details.map((item) => (
                     <div key={item.id}>
                         <p>{item.activity}</p>
-                        {/* <p>{item.sem}</p>
+                        <p>{item.sem}</p>
                     <p>{item.prize}</p>
-                    <p>{item.level}</p> */}
+                    <p>{item.level}</p>
                     </div>
                 ))}
-            </div>
+            </div> */}
         </div>
     );
 }

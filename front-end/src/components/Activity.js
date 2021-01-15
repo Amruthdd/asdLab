@@ -134,16 +134,16 @@ function Activity(props) {
                                 {message}
                             </p>
                         </form>
-                        <div style={{ textAlign: "center" }}>
+                        {/* <div style={{ textAlign: "center" }}>
                             {details.map((item) => (
                                 <div key={item.id}>
                                     <p>{item.activity}</p>
-                                    {/* <p>{item.sem}</p>
+                                    <p>{item.sem}</p>
                     <p>{item.prize}</p>
-                    <p>{item.level}</p> */}
+                    <p>{item.level}</p>
                                 </div>
                             ))}
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className='col-12 col-md-6 order-md-1'>

@@ -25,10 +25,14 @@ function StudentInfo(){
             <div style={{ textAlign: "center" }}>
                             {details.map((item) => (
                                 <div key={item.id}>
-                                    <p>{item.activity}</p>
+                                    <p>{item.title}</p>
                                     <p>{item.prize}</p>
                                     <p>{item.level}</p><br/><br/>
+                                    <button onClick={() => {
+                                        window.open(`http://localhost:8001/${item.image}`);
+                                    }} >View Certificate</button>
                                 </div>
+                                
                             ))}
                         </div>
         </div>
