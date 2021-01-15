@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link, Redirect } from "react-router-dom";
 import Axios from "axios";
+import TitleSVG from "../TitleSVG";
+import StudentCard from "./StudentCardOnAdmin";
 
-function AdminDash(){
-
+function AdminDash() {
     const [details, setDetails] = useState([]);
     const [activities, setActivities] = useState([]);
-    const sem = "S1"
+    const sem = "S1";
 
     // useEffect(() => {
     //     Axios.get(`http://localhost:8001/admin/studentinfo`, {
@@ -34,34 +35,44 @@ function AdminDash(){
         }).then((response) => {
             setDetails(response.data);
             console.log(response.data);
-
         });
     }, []);
-
+    console.log(details);
     return (
-        <div>
-            Admin Dash<br/>
-            <div style={{ textAlign: "center" }}>
-                            {details.map((item) => (
-                                <div key={item.id}>
-
-                                    <Link to='/studentsem'
-                                        onClick={ () =>{
-                                        localStorage.setItem("student", item.username);
-                                        // localStorage.setItem("sem", "S1");
-                                        }
-                                        
-                                    }> {item.username}
-                                    </Link>
-                                   
-                                    
-                                </div>
-                            ))}
-            </div><br/>
-            <Link to='/logout'>Logout</Link>
+        <div className='my-5 container user-select-none overflow-hidden'>
+            <div className='d-flex justify-content-between align-items-center'>
+                <div className='log-page-title'>
+                    <TitleSVG />
+                </div>
+                <div>
+                    <Link to='/home' className='px-3 py-1 no-underline'>
+                        Home
+                    </Link>
+                    <Link to='/profile' className='px-5 py-1 no-underline grey'>
+                        Profile
+                    </Link>
+                    <Link to='/logout' className='btn start-btn px-3'>
+                        Logout
+                    </Link>
+                </div>
+            </div>
+            <div>
+                {details.map((item) => (
+                    <div key={item.id}>
+                        <Link
+                            to='/studentsem'
+                            onClick={() => {
+                                localStorage.setItem("student", item.username);
+                                // localStorage.setItem("sem", "S1");
+                            }}
+                        >
+                            <StudentCard item={item} />
+                        </Link>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }
-
 
 export default AdminDash;

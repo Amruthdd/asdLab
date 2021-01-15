@@ -327,13 +327,14 @@ app.get("/:username/:sem/activity", verifyJWT, (req, res, next) => {
 });
 
 app.get("/admin/studentinfo", verifyJWT, (req, res, next) => {
-    activity
+    user
         .findAll({
             attributes: [
                 [
                     Sequelize.fn("DISTINCT", Sequelize.col("username")),
                     "username",
                 ],
+                "email"
             ],
         })
         .then((activity) => {
