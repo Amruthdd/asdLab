@@ -183,6 +183,10 @@
     transition: all 0.15s ease-in-out;
 }
 
+.form-control-file {
+    color: #5078fa;
+}
+
 .start-btn {
     background: #5078fa;
     color: white;

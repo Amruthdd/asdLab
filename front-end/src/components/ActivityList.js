@@ -43,10 +43,16 @@ export default function ActivityList() {
                         <TitleSVG />
                     </div>
                     <div>
-                        <Link to='/home' className='px-3 py-1 grey'>
+                        <Link
+                            to='/home'
+                            className='px-3 py-1 no-underline grey'
+                        >
                             Home
                         </Link>
-                        <Link to='/profile' className='px-5 py-1 grey'>
+                        <Link
+                            to='/profile'
+                            className='px-5 py-1 no-underline grey'
+                        >
                             Profile
                         </Link>
                         <Link to='/logout' className='btn start-btn px-3'>
