@@ -121,13 +121,25 @@ function Activity(props) {
                         id='exampleFormControlFile1'
                     ></input>
                 </div>
-                <div className='my-2'>
-                    <button
-                        className='btn mx-auto start-btn orange-btn d-block col-6'
-                        type='submit'
-                    >
-                        Save for verification
-                    </button>
+                <div className='my-2 d-flex justify-content-end align-items-center'>
+                    <div>
+                        <button
+                            type='button'
+                            class='close btn ml-auto py-3 px-4'
+                            data-dismiss='modal'
+                            aria-label='Close'
+                        >
+                            Cancel
+                        </button>
+                    </div>
+                    <div>
+                        <button
+                            className='btn start-btn orange-btn col-6'
+                            type='submit'
+                        >
+                            Save for verification
+                        </button>
+                    </div>
                 </div>
                 <p
                     style={{

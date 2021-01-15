@@ -20,10 +20,10 @@ export default function ActivityList() {
                         <TitleSVG />
                     </div>
                     <div>
-                        <Link to='/home' className='px-3 py-1'>
+                        <Link to='/home' className='px-3 py-1 grey'>
                             Home
                         </Link>
-                        <Link to='/profile' className='px-5 py-1'>
+                        <Link to='/profile' className='px-5 py-1 grey'>
                             Profile
                         </Link>
                         <Link to='/logout' className='btn start-btn px-3'>
@@ -114,10 +114,8 @@ export default function ActivityList() {
                         </div>
                     </div>
                     <div className='my-5'>
-                        <h4 classname='purple'>Activities</h4>
-                        <div>
-                            <ActivityCard />
-                        </div>
+                        <h4 className='purple'>Activities</h4>
+                        <ActivityCard />
                     </div>
                 </div>
             </div>

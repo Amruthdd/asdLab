@@ -28,7 +28,7 @@ function Home(props) {
                     <Link to='/home' className='px-3 py-1'>
                         Home
                     </Link>
-                    <Link to='/profile' className='px-5 py-1'>
+                    <Link to='/profile' className='px-5 py-1 grey'>
                         Profile
                     </Link>
                     <Link to='/logout' className='btn start-btn px-3'>

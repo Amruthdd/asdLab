@@ -7,12 +7,41 @@
     font-weight: 500;
 }
 
+.grey {
+    color: #999 !important;
+}
+
 .orange {
     color: #fba368;
 }
 
 .purple {
     color: #5078fa;
+}
+
+.font-400 {
+    font-weight: 400;
+}
+
+.font-small {
+    font-size: small;
+    font-weight: 500;
+    color: #999;
+}
+
+.three-dots {
+    border: 0;
+    box-shadow: 2px 2px 8px rgba(80, 120, 250, 0.25);
+}
+
+.three-dots :hover {
+    background: #5078fa;
+    color: white;
+}
+
+.three-dots :focus {
+    background: white;
+    color: #232e71;
 }
 
 .white-input {
@@ -22,6 +51,10 @@
 
 .orange-btn {
     background: #fba368 !important;
+}
+
+.orange-btn:hover {
+    background: #b85720 !important;
 }
 
 .sem-cards-container {
@@ -36,11 +69,17 @@
 .sem-card {
     width: 15rem;
     height: 182px;
+    transition: all 0.15s ease-in-out;
+}
+
+.sem-card:hover {
+    background-color: #d9e0fa;
+    transition: all 0.15s ease-in-out;
 }
 
 .activity-card {
-    max-width: 70%;
-    height: 5rem;
+    max-width: 50rem;
+    min-height: 5rem;
 }
 
 .round {
@@ -59,20 +98,30 @@
     color: rgba(80, 120, 250, 0.5);
 }
 
+.more-vert:hover {
+    color: rgba(80, 120, 250, 1);
+}
+
 .dropdown-btn:focus {
     box-shadow: none;
 }
 
-.green-btn {
+.green-flag {
     background: rgba(57, 217, 138, 0.5);
     color: #1d6b45;
     font-weight: 500;
+    border-radius: 2rem;
+    text-align: center;
+    min-width: 8rem;
 }
 
-.orange-btn {
-    background: rgba(245, 167, 94, 0.3);
+.orange-flag {
+    background: rgba(245, 167, 94, 0.5);
     color: #b85720;
     font-weight: 500;
+    border-radius: 2rem;
+    text-align: center;
+    min-width: 8rem;
 }
 
 .modal {
@@ -81,6 +130,16 @@
 
 .modal-dialog {
     border-radius: 1rem !important;
+}
+
+.modal-content {
+    border-radius: 1.2rem;
+    border: 0;
+}
+
+.close {
+    float: none;
+    font-size: inherit;
 }
 
 .btn .dark-blue-text,
