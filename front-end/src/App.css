@@ -84,9 +84,15 @@
     transition: all 0.15s ease-in-out;
 }
 
+.card-hover:hover {
+    background-color: #d9e0fa;
+    transition: all 0.15s ease-in-out;
+}
+
 .activity-card {
     max-width: 50rem;
     min-height: 5rem;
+    transition: all 0.15s ease-in-out;
 }
 
 .round {
