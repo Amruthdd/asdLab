@@ -45,11 +45,8 @@ function AdminDash() {
                     <TitleSVG />
                 </div>
                 <div>
-                    <Link to='/admindash' className='px-3 py-1 no-underline'>
+                    <Link to='/admindash' className='px-5 py-1 no-underline'>
                         Home
-                    </Link>
-                    <Link to='/profile' className='px-5 py-1 no-underline grey'>
-                        Profile
                     </Link>
                     <Link to='/logout' className='btn start-btn px-3'>
                         Logout
