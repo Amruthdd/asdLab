@@ -3,6 +3,8 @@ import { Link, Redirect } from "react-router-dom";
 import TitleSVG from "../TitleSVG";
 import Axios from "axios";
 import { MdPerson } from "react-icons/md";
+import "./profile.css";
+import "./admin.css";
 
 function StudentInfo() {
     const [details, setDetails] = useState([]);
@@ -46,88 +48,10 @@ function StudentInfo() {
             </div>
             <div className='my-5'>
                 <div className='row'>
-                    <div className='card-bg col-3 py-3 px-4'>
-                        <div className='dark-blue h5'>Semesters</div>
-                        <div className={false ? "grey-bg my-3" : "my-3"}>
-                            <Link
-                                to='/studentinfo'
-                                onClick={() => {
-                                    localStorage.setItem("sem", "S1");
-                                }}
-                            >
-                                S1
-                            </Link>
-                        </div>
-                        <div className='my-3'>
-                            <Link
-                                to='/studentinfo'
-                                onClick={() => {
-                                    localStorage.setItem("sem", "S2");
-                                }}
-                            >
-                                S2
-                            </Link>{" "}
-                        </div>
-                        <div className='my-3'>
-                            <Link
-                                to='/studentinfo'
-                                onClick={() => {
-                                    localStorage.setItem("sem", "S3");
-                                }}
-                            >
-                                S3
-                            </Link>
-                        </div>{" "}
-                        <div className='my-3'>
-                            <Link
-                                to='/studentinfo'
-                                onClick={() => {
-                                    localStorage.setItem("sem", "S4");
-                                }}
-                            >
-                                S4
-                            </Link>
-                        </div>{" "}
-                        <div className='my-3'>
-                            <Link
-                                to='/studentinfo'
-                                onClick={() => {
-                                    localStorage.setItem("sem", "S5");
-                                }}
-                            >
-                                S5
-                            </Link>
-                        </div>
-                        <div className='my-3'>
-                            <Link
-                                to='/studentinfo'
-                                onClick={() => {
-                                    localStorage.setItem("sem", "S6");
-                                }}
-                            >
-                                S6
-                            </Link>
-                        </div>
-                        <div className='my-3'>
-                            <Link
-                                to='/studentinfo'
-                                onClick={() => {
-                                    localStorage.setItem("sem", "S7");
-                                }}
-                            >
-                                S7
-                            </Link>
-                        </div>
-                        <div className='mt-3'>
-                            <Link
-                                to='/studentinfo'
-                                onClick={() => {
-                                    localStorage.setItem("sem", "S8");
-                                }}
-                            >
-                                S8
-                            </Link>
-                        </div>
+                    <div className='py-3 px-4'>
+                        <Link to='/studentsem' className='no-underline'>
+                            View Semesters
+                        </Link>
                     </div>
                     <div className='col-6'>
                         <div className='d-flex align-items-center my-3 mr-3'>
@@ -157,32 +81,33 @@ function StudentInfo() {
                                         <div className='profile-center my-1'>
                                             <div className='my-3'>
                                                 <span className='purple font-500'>
-                                                    User name :
+                                                    Prize Won :
                                                 </span>
                                                 <span className='profile-form mb-4'>
-                                                    {item.prize}{" "}
+                                                    {item.prize}
                                                 </span>
                                             </div>
 
                                             <div className='my-3'>
                                                 <span className='purple font-500'>
-                                                    Email :
+                                                    Achievement Level :
                                                 </span>
                                                 <span className='profile-form mb-4'>
-                                                    {item.level}{" "}
+                                                    {item.level}
                                                 </span>
                                             </div>
 
                                             <div className='my-3'>
                                                 <span className='purple font-500'>
-                                                    Address :
+                                                    Category :
                                                 </span>
                                                 <span className='profile-form mb-4'>
-                                                    {item.category}{" "}
+                                                    {item.category}
                                                 </span>
                                             </div>
 
                                             <button
+                                                className='btn start-btn'
                                                 onClick={() => {
                                                     window.open(
                                                         `http://localhost:8001/${item.image}`

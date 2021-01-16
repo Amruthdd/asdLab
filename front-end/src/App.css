@@ -11,6 +11,10 @@
     color: #999 !important;
 }
 
+.grey-bg {
+    background: #99a6b1;
+}
+
 .orange {
     color: #fba368;
 }
@@ -21,6 +25,10 @@
 
 .font-400 {
     font-weight: 400;
+}
+
+.font-500 {
+    font-weight: 500;
 }
 
 .font-small {
@@ -46,7 +54,14 @@
 
 .white-input {
     background-color: #fff !important;
-    border: 1px solid #eef2ff !important;
+    border: 1px solid hsl(0, 0%, 70%) !important;
+    border-radius: 4px !important;
+}
+
+.white-input:focus {
+    border: 1px solid #2684ff !important;
+    box-shadow: 0 0 0 1px #2684ff !important;
+    border-radius: 4px !important;
 }
 
 .orange-btn {
@@ -77,9 +92,15 @@
     transition: all 0.15s ease-in-out;
 }
 
+.card-hover:hover {
+    background-color: #d9e0fa;
+    transition: all 0.15s ease-in-out;
+}
+
 .activity-card {
     max-width: 50rem;
     min-height: 5rem;
+    transition: all 0.15s ease-in-out;
 }
 
 .round {
@@ -184,7 +205,7 @@
 }
 
 .form-control-file {
-    color: #5078fa;
+    color: #999;
 }
 
 .start-btn {
@@ -270,4 +291,14 @@
     .teacher-data-rafiki {
         height: 400px;
     }
+}
+
+.logout-bg {
+    background: url("./graphics/Mobile login-cuate.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    margin: 0;
+    height: 25rem;
+    opacity: 50%;
 }
