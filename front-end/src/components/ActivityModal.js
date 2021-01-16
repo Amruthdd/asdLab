@@ -29,6 +29,9 @@ function Activity(props) {
     const [access, setAccess] = useState();
     const [message, setMessage] = useState("");
     const [details, setDetails] = useState([]);
+    const [point, setPoint] = useState(0);
+
+    
 
     // const u = props.location.state.username;
     const user = localStorage.getItem("user");
@@ -46,10 +49,46 @@ function Activity(props) {
             // console.log(response.data);
         });
     }, []);
+    const calculate = () => {
 
+
+        var points = 10;
+
+        if(level.value === "International"){
+            points=points+15;
+        }
+        else if(level.value === "State"){
+            
+            points=points+10;
+        }
+        else if(level.value === "College"){
+
+            points=points+5;
+        }
+        
+        if(prize.value === "First"){
+            points=points+10;
+        }
+        else if(prize.value === "Second"){
+            
+            points=points+8;
+        }
+        else if(prize.value === "Third"){
+
+            points=points+5;
+        }
+        setPoint(points);
+
+    }
     const uploadDetails = (e) => {
+        
+
         const token = localStorage.getItem("token");
-        console.log(level.value);
+        
+        
+        
+        console.log(point);
+
         var certificatedata = new FormData();
 
         const image = document.querySelector('input[type="file"]').files[0];
@@ -60,6 +99,7 @@ function Activity(props) {
         certificatedata.append("category", category.value);
         certificatedata.append("level", level.value);
         certificatedata.append("prize", prize.value);
+        certificatedata.append("point", point);
         certificatedata.append("certificatedata", image);
 
         fetch(`http://localhost:8001/certi/activity`, {
@@ -213,10 +253,16 @@ function Activity(props) {
                     <div>
                         <button
                             className='btn start-btn orange-btn col-6'
+                            onClick={calculate}
+                        >
+                            Submit
+                        </button>
+                        {/* <button
+                            className='btn start-btn orange-btn col-6'
                             type='submit'
                         >
-                            Save for verification
-                        </button>
+                            Submit
+                        </button> */}
                     </div>
                 </div>
                 <p

@@ -15,6 +15,7 @@ const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const activity = require("./models/activity");
 const admin = require("./models/admin");
+const sempoints = require("./models/sempoints");
 require("dotenv").config();
 
 //MULTER
@@ -241,6 +242,21 @@ app.post("/admin/signup", (req, res, next) => {
         });
 });
 
+// app.put("/sempoints", verifyJWT, (req, res, next) => {
+//     sempoints.update(
+//       {
+//         username:req.body.username,
+//         point: req.body.point
+//     },
+//     )
+//     .then((r) => {
+//         console.log(r)
+//     })
+//     .catch(
+//         (err) => console.log(err)
+//     )
+//    });
+
 app.post("/activity", verifyJWT, (req, res, next) => {
     activity
         .create({
@@ -286,6 +302,7 @@ app.post("/certi/activity",verifyJWT,(req,res,next)=>{
             category:req.body.category,
             prize: req.body.prize,
             level: req.body.level,
+            point:req.body.point,
             image:req.file.path
         })
         .then((r) => {

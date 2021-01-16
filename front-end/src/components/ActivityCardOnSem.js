@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { MdAssignment } from "react-icons/md";
 import { MdMoreVert } from "react-icons/md";
+import Axios from "axios";
 
-export default function ActivityCard({ data }) {
+export default function ActivityCard({ data , total }) {
+
     const [approval, setApproval] = useState(false);
-
+    
     return (
         <div>
             {data.map((item) => (
@@ -18,10 +20,10 @@ export default function ActivityCard({ data }) {
                             </div>
                             <div>
                                 <div className='dark-blue font-400'>
-                                    {item.activity}
+                                    {item.title}
                                 </div>
                                 <div className='font-small'>
-                                    {item.prize} | {item.level} | 5 points
+                                    {item.prize} | {item.level} | {item.point} points
                                 </div>
                             </div>
                         </div>

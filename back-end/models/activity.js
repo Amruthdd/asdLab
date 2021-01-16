@@ -42,6 +42,11 @@ const activity = sequelize.define('activity',{
         allowNull:false
 
     },
+    point: {
+        type:Sequelize.INTEGER,
+        allowNull:false
+
+    },
     image: {
         type:Sequelize.STRING,
         allowNull:false
