@@ -52,34 +52,51 @@ function Activity(props) {
     const calculate = () => {
 
 
-        var points = 10;
+        var points = 3;
+        var total=0;
 
         if(level.value === "International"){
-            points=points+15;
+            points=points+10;
         }
         else if(level.value === "State"){
             
-            points=points+10;
+            points=points+5;
         }
         else if(level.value === "College"){
 
-            points=points+5;
+            points=points+3;
         }
         
         if(prize.value === "First"){
-            points=points+10;
+            points=points+5;
         }
         else if(prize.value === "Second"){
             
-            points=points+8;
+            points=points+5;
         }
         else if(prize.value === "Third"){
 
-            points=points+5;
+            points=points+1;
         }
         setPoint(points);
 
+        for (var i=0; i<details.length;i++){
+            total = total +details[i].point;
+        }
+        Axios.post("http://localhost:8001/sempoints", {
+            username: user,
+            sem:semR,
+            point:total+points
+        },
+        {
+            headers: {
+                "x-access-token": localStorage.getItem("token"),
+            },
+        }        
+        )
+
     }
+
     const uploadDetails = (e) => {
         
 
@@ -100,6 +117,7 @@ function Activity(props) {
         certificatedata.append("level", level.value);
         certificatedata.append("prize", prize.value);
         certificatedata.append("point", point);
+        certificatedata.append("verify", false);
         certificatedata.append("certificatedata", image);
 
         fetch(`http://localhost:8001/certi/activity`, {

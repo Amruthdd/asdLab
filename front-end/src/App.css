@@ -67,6 +67,9 @@
 .orange-btn {
     background: #fba368 !important;
 }
+.green-btn {
+    background: #2eb554 !important;
+}
 
 .orange-btn:hover {
     background: #b85720 !important;

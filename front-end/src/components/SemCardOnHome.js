@@ -1,7 +1,11 @@
-import React from "react";
+import react, { useState, useEffect } from "react";
 import { Link, Redirect } from "react-router-dom";
+import Axios from "axios";
 
-export default function SemCard({ data, semno }) {
+export default function SemCard({ data, semno, point }) {
+
+    
+    
     return (
         <div className='card-bg sem-card m-3'>
             <Link
@@ -15,7 +19,7 @@ export default function SemCard({ data, semno }) {
                 <div className='h-100 w-100 p-3'>
                     <div className='h3 orange'>{semno}</div>
                     <div>Activties Added</div>
-                    <div>Points Gained</div>
+            <div>Points Gained: {point}</div>
                 </div>
             </Link>
         </div>

@@ -47,6 +47,11 @@ const activity = sequelize.define('activity',{
         allowNull:false
 
     },
+    verify: {
+        type:Sequelize.BOOLEAN,
+        allowNull:false
+
+    },
     image: {
         type:Sequelize.STRING,
         allowNull:false

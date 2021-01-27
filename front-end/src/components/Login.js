@@ -57,20 +57,6 @@ function Login() {
                         </div>
                     </div>
                     <div className='mx-auto py-4 log-box-main'>
-                        {/* <div
-                    className='log-title'
-                    style={{ backgroundColor: "#fff", color: "#D92027" }}
-                >
-                    <b>LogIn</b>
-                </div> */}
-                        {/* <div className='sign-title'>
-                    <Link
-                        to='/signup'
-                        style={{ color: "#fff", textDecoration: "none" }}
-                    >
-                        <b>Sign Up</b>
-                    </Link>
-                </div> */}
                         <form
                             className='mx-auto form-group col-10'
                             onSubmit={login}

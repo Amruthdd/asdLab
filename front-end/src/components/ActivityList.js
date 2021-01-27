@@ -21,10 +21,12 @@ export default function ActivityList() {
     // const sem = props.location.state.sem;
     const semR = localStorage.getItem("sem");
     const token = localStorage.getItem("token");
-    var total = 0;
+    
+    var distot = 0;
 
 
     useEffect(() => {
+        var total = 0;
         Axios.get(`http://localhost:8001/${user}/${semR}/activity`, {
             headers: {
                 "x-access-token": localStorage.getItem("token"),
@@ -32,11 +34,12 @@ export default function ActivityList() {
         }).then((response) => {
             setDetails(response.data);
         })
-        
     }, []);
+
+
     for (var i=0; i<details.length;i++){
-        total = total +details[i].point;
-    }
+                distot = distot +details[i].point;
+            }
 
     if (!token || !user) {
         return <Redirect to='/login' />;
@@ -96,7 +99,6 @@ export default function ActivityList() {
                                     <span class='align-baseline'>Add New</span>
                                     
                                 </div>
-                                {total}
                             </div>
                         </button>
 
@@ -152,7 +154,8 @@ export default function ActivityList() {
                     </div>
                     <div className='my-5'>
                         <h4 className='purple'>Activities</h4>
-                        <ActivityCard data={details} total={total}/>
+                        <h6 className='dark-blue'>Points Gained : {distot}</h6>
+                        <ActivityCard data={details} total={distot}/>
                     </div>
                 </div>
             </div>

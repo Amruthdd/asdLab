@@ -28,6 +28,8 @@ function Activity(props) {
         });
     }, []);
 
+    // const uploadPoint = () =>{  
+    // }
     const uploadDetails = (e) => {
         const token = localStorage.getItem("token");
 

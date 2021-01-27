@@ -28,7 +28,7 @@ export default function ActivityCard({ data , total }) {
                             </div>
                         </div>
                     </div>
-                    {approval ? (
+                    {item.verify ? (
                         <div className='mx-3 py-2 px-4 green-flag'>Approved</div>
                     ) : (
                         <div className='mx-3 py-2 px-4 orange-flag'>Pending</div>

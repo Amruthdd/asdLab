@@ -139,7 +139,9 @@ app.post("/signup", (req, res, next) => {
             // name:req.body.name,
             email: req.body.email,
             username: req.body.username,
+            fullname:req.body.fullname,
             password: hash,
+            currsem:req.body.currsem,
             address: req.body.address,
             phoneno: req.body.phoneno,
         })
@@ -278,6 +280,127 @@ app.post("/activity", verifyJWT, (req, res, next) => {
         });
 });
 
+app.get("/:username/sempoints", verifyJWT, (req, res, next) => {
+    sempoints
+        .findAll({
+            where: {
+                username: req.params.username,
+            },
+        })
+        .then((user) => {
+            res.status(200).json(
+                user
+               
+            );
+            // const users =[];
+            // console.log(user);
+            // user.map((e) => {
+            //     users.push(e.dataValues.point)
+            // });
+            // res.send(200).json(
+            //     users
+            // )
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
+app.post("/sempoints", verifyJWT, (req, res, next) => {
+
+    console.log(req.body.point);
+
+    sempoints.findAll({where: {
+        username: req.body.username,
+        sem:req.body.sem
+    }}).then((response) => {
+        // console.log(response);
+        
+
+        if(response.length == 0){
+            sempoints
+        .create({
+            username: req.body.username,
+            sem: req.body.sem,
+            point:req.body.point
+        }).then((r) => {
+            console.log(r);
+        }).catch((err) => {
+                console.log(err);
+        })
+        }else{
+            sempoints.update({point:req.body.point},
+                {where:{
+                    username:req.body.username,
+                    sem:req.body.sem
+                },
+                returning:true,plain:true}).then((r)=>{
+                    console.log(r);
+                }).catch((err) => {
+                    console.log(err);
+                })
+        };
+    })
+
+    
+        .then((r) => {
+            res.status(200).json({ message: "Activity point added" });
+        })
+        .catch((err) => {
+            err.statusCode = 403;
+            err.message = "Something went wrong!!";
+            res.send(err.message);
+            next(err);
+        });
+});
+
+app.post("/approval", verifyJWT, (req, res, next) => {
+
+    console.log(req.body.verfiy);
+    activity.update({verify:true},
+        {where:{
+            id:req.body.id
+        },
+        returning:true,plain:true}).then((r)=>{
+            console.log(r);
+        }).catch((err) => {
+            console.log(err);
+        })
+
+    // sempoints.findAll({where: {
+    //     username: req.body.username,
+    //     sem:req.body.sem
+    // }}).then((response) => {
+    //     // console.log(response);
+        
+
+    //     if(response.length == 0){
+    //         sempoints
+    //     .create({
+    //         username: req.body.username,
+    //         sem: req.body.sem,
+    //         point:req.body.point
+    //     }).then((r) => {
+    //         console.log(r);
+    //     }).catch((err) => {
+    //             console.log(err);
+    //     })
+    //     }else{
+    
+    //     };
+    // })
+
+    
+    //     .then((r) => {
+    //         res.status(200).json({ message: "Activity point added" });
+    //     })
+    //     .catch((err) => {
+    //         err.statusCode = 403;
+    //         err.message = "Something went wrong!!";
+    //         res.send(err.message);
+    //         next(err);
+    //     });
+});
+
 app.post("/certi/activity",verifyJWT,(req,res,next)=>{
 
     console.log(req.file);
@@ -303,6 +426,7 @@ app.post("/certi/activity",verifyJWT,(req,res,next)=>{
             prize: req.body.prize,
             level: req.body.level,
             point:req.body.point,
+            verify:req.body.verify,
             image:req.file.path
         })
         .then((r) => {
@@ -382,6 +506,8 @@ app.get("/:username/user", verifyJWT, (req, res, next) => {
                 address: user.address,
                 phoneno: user.phoneno,
                 username: user.username,
+                currsem: user.currsem,
+                fullname:user.fullname
                 // image:user.image
             });
         })

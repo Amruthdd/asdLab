@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, Redirect } from "react-router-dom";
 import TitleSVG from "../TitleSVG";
 import Axios from "axios";
-import { MdPerson } from "react-icons/md";
+import { MdAssignment } from "react-icons/md";
 import "./profile.css";
 import "./admin.css";
 
@@ -56,21 +56,21 @@ function StudentInfo() {
                     <div className='col-6'>
                         <div className='d-flex align-items-center my-3 mr-3'>
                             <div className='round d-flex justify-content-center align-items-center my-2 mx-3'>
-                                <MdPerson size={22} />
+                                <MdAssignment size={22} />
                             </div>
                             <div className='dark-blue h4'>{user}</div>
                         </div>
                         <h2 className='dark-blue mx-4 mb-0'>{semR}</h2>
                         <div style={{ textAlign: "center" }}>
                             {details.map((item) => (
-                                <div>
+                                <div className="m-4">
                                     <div
                                         key={item.id}
                                         className='card-bg py-3 px-5 profile-size'
                                     >
                                         <div className='d-flex align-items-center my-3 mr-3'>
                                             <div className='round d-flex justify-content-center align-items-center my-2 mx-3'>
-                                                <MdPerson size={22} />
+                                                <MdAssignment size={22} />
                                             </div>
                                             <div className='dark-blue h4'>
                                                 {item.title}
@@ -105,6 +105,14 @@ function StudentInfo() {
                                                     {item.category}
                                                 </span>
                                             </div>
+                                            <div className='my-3'>
+                                                <span className='purple font-500'>
+                                                    Status:
+                                                </span>
+                                                <span className='profile-form mb-4'>
+                                                    {item.verify ? <p>Approved</p> : <p>Pending</p> }
+                                                </span>
+                                            </div>
 
                                             <button
                                                 className='btn start-btn'
@@ -115,6 +123,26 @@ function StudentInfo() {
                                                 }}
                                             >
                                                 View Certificate
+                                            </button>
+                                            {item.verify}
+                                            <button
+                                                className={item.verify ?'m-2 btn start-btn d-none':'m-2 btn start-btn green-btn'  }
+                                                onClick={() => {
+                                                    Axios.post("http://localhost:8001/approval", {
+                                                            username: user,
+                                                            sem:semR,
+                                                            id: item.id,
+                                                            
+                                                        },
+                                                        {
+                                                            headers: {
+                                                                "x-access-token": localStorage.getItem("token"),
+                                                            },
+                                                        }        
+                                                        )
+                                                }}
+                                            >
+                                                Approve
                                             </button>
                                         </div>
                                     </div>

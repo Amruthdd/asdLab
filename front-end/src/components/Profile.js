@@ -17,7 +17,7 @@ function Profile(props) {
             },
         }).then((response) => {
             setDetails(response.data);
-            // console.log(response.data);
+            console.log(response.data);
         });
     }, []);
 
@@ -53,6 +53,12 @@ function Profile(props) {
                     <hr></hr>
 
                     <div className='profile-center my-1'>
+                    <div className='my-3'>
+                            <span className='purple font-500'>Full Name :</span>
+                            <span className='profile-form mb-4'>
+                                {details.fullname}
+                            </span>
+                        </div>
                         <div className='my-3'>
                             <span className='purple font-500'>User name :</span>
                             <span className='profile-form mb-4'>
@@ -78,6 +84,12 @@ function Profile(props) {
                             <span className='purple font-500'>Phone :</span>
                             <span className='profile-form mb-4'>
                                 {details.phoneno}
+                            </span>
+                        </div>
+                        <div className='my-3'>
+                            <span className='purple font-500'>Current Sem :</span>
+                            <span className='profile-form mb-4'>
+                                {details.currsem}
                             </span>
                         </div>
                     </div>
